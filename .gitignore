@@ -1,4 +1,5 @@
 .idea
+tutorial
 composer.phar
 ###> symfony/framework-bundle ###
 /.env
