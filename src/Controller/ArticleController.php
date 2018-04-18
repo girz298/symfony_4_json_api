@@ -4,10 +4,11 @@ namespace App\Controller;
 
 
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArticleController
+class ArticleController extends AbstractController
 {
 	/**
 	 * @Route("/")
@@ -24,6 +25,16 @@ class ArticleController
 	 */
 	public function show($slug)
 	{
-		return new Response('It taste like a rainbow: ' . $slug);
+		$comments = [
+			'1ipisci ducimus eaque maxime mollitia nihil, quidem repudiandae saepe',
+			'2ipisci ducimus eaque maxime mollitia nihil, quidem repudiandae saepe',
+			'3ipisci ducimus eaque maxime mollitia nihil, quidem repudiandae saepe',
+			'4ipisci ducimus eaque maxime mollitia nihil, quidem repudiandae saepe',
+		];
+
+		return $this->render('article/show.html.twig', [
+			'title' => ucwords(str_replace('_', ' ', $slug)),
+			'comments' => $comments,
+		]);
 	}
 }

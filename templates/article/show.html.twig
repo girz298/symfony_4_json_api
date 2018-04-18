@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Read {{ title }}{% endblock %}
+
+
+{% block body %}
+    <h1>{{ title }}</h1>
+
+    <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti eum eveniet excepturi laborum magnam quod
+            vel
+            voluptates! Adipisci ducimus eaque maxime mollitia nihil, quidem repudiandae saepe suscipit vel? Ad
+            asperiores
+            assumenda aut autem blanditiis cumque earum libero minus nemo neque nesciunt nostrum optio perspiciatis,
+            placeat
+            possimus quae repudiandae suscipit tenetur!</p>
+        <p>A adipisci alias aliquam assumenda cumque dolore doloribus eaque earum facere fugit incidunt inventore iure
+            natus
+            neque nihil nisi nulla officiis optio porro, quia quidem sapiente sequi? Blanditiis cupiditate
+            exercitationem
+            ipsam quod rerum tempora veniam. Assumenda commodi et fuga hic, laudantium minus, nihil, omnis perferendis
+            quasi
+            quod vel voluptate voluptatibus.</p>
+        <p>Aperiam asperiores autem doloremque eius esse fugit hic illum incidunt ipsam ipsum, molestiae neque nostrum
+            omnis
+            praesentium reiciendis soluta vitae! Ab cum doloremque est laudantium quis voluptas. Accusamus ad aliquid
+            aut
+            consequuntur deserunt, eaque eos, in iusto laborum, omnis quasi qui quidem quos repellat sed tenetur
+            voluptas!
+            Beatae deserunt, quae.</p>
+        <p>Accusamus accusantium ex hic in inventore molestiae nisi obcaecati, odio, officiis pariatur quia, quod
+            repudiandae vel veritatis voluptatibus! Accusantium consequatur distinctio ipsum molestias, quia saepe
+            sapiente.
+            Ab aperiam architecto assumenda cupiditate ducimus ea error eum hic illum, incidunt iste laboriosam magni
+            modi
+            officiis qui quisquam sapiente tempore ullam voluptate voluptatem.</p>
+        <p>Dicta excepturi laborum necessitatibus veritatis. A ab adipisci beatae consequuntur cum dolores ea, est
+            inventore
+            laudantium necessitatibus officiis pariatur possimus provident quidem sequi similique veniam, voluptatibus!
+            Aliquid, architecto aut autem cupiditate delectus dolorem dolores ducimus eum expedita illum ipsa laudantium
+            nihil perferendis quae quam rerum similique soluta tempore ut voluptates.</p>
+    </div>
+
+    <h2>Comments ({{ comments|length }})</h2>
+
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
