@@ -12,25 +12,31 @@ security:
                         password: 12345678
                         roles: 'IS_AUTHENTICATED_FULLY'
     firewalls:
-          login:
-              provider: in_memory
-              pattern:  ^/api/token
-              stateless: true
-              anonymous: true
-              form_login:
-                  check_path:               /api/token
-                  success_handler:          lexik_jwt_authentication.handler.authentication_success
-                  failure_handler:          lexik_jwt_authentication.handler.authentication_failure
-                  require_previous_session: false
-          api_docs:
-              pattern: ^/api/docs
-              security: false
-          api:
-              pattern:   ^/api
-              stateless: true
-              guard:
-                  authenticators:
-                      - lexik_jwt_authentication.jwt_token_authenticator
+        token:
+            provider: in_memory
+            pattern:  ^/api/token
+            stateless: true
+            anonymous: true
+            form_login:
+                check_path:               /api/token
+                success_handler:          lexik_jwt_authentication.handler.authentication_success
+                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+                require_previous_session: false
+        token_refresh:
+            pattern:  ^/api/token/refresh
+            stateless: true
+            anonymous: true
+        api_docs:
+            pattern: ^/api/docs
+            anonymous: true
+        api:
+            pattern:   ^/api
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
     access_control:
         - { path: ^/api/token, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/docs, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
