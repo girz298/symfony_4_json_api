@@ -2,18 +2,28 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
+        App\Entity\API\User: plaintext
     role_hierarchy:
         IS_AUTHENTICATED_FULLY: IS_AUTHENTICATED_ANONYMOUSLY
     providers:
+        chain_provider:
+            chain:
+                providers: [in_memory, our_db_provider]
         in_memory:
             memory:
                 users:
-                    sergey:
-                        password: 12345678
+                    admin:
+                        password: admin
                         roles: 'IS_AUTHENTICATED_FULLY'
+        our_db_provider:
+            entity:
+                class: App\Entity\API\User
+                property: username
+        jwt:
+            lexik_jwt: ~
     firewalls:
         token:
-            provider: in_memory
+            provider: chain_provider
             pattern:  ^/api/token
             stateless: true
             anonymous: true
@@ -30,6 +40,7 @@ security:
             pattern: ^/api/docs
             anonymous: true
         api:
+            provider: jwt
             pattern:   ^/api
             stateless: true
             guard:
