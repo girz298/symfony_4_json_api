@@ -31,6 +31,12 @@ class Greeting
 	 */
 	public $name = '';
 
+	/**
+	 * @var User
+	 * @ORM\ManyToOne(targetEntity="User")
+	 */
+	private $user;
+
 	public function getId(): int
 	{
 		return $this->id;
